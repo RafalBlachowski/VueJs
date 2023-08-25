@@ -22,15 +22,15 @@
 </template>
 
 <script lang="ts" setup>
-import './header.css';
-import MyButton from './Button.vue';
+import "./header.css";
+import MyButton from "./MyButton.vue";
 
 defineProps<{ user: { name: string } | null }>();
 
 defineEmits<{
-  (event: 'createAccount'): void;
-  (event: 'login'): void;
-  (event: 'logout'): void;
+  (event: "createAccount"): void;
+  (event: "login"): void;
+  (event: "logout"): void;
 }>();
 
 </script>
