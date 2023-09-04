@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<{
   /**
    * size of the button
    */
-  size?: "small" | "medium" | "large",
+  size?: "small" | "medium" | "large | custom",
   /**
    * background color of the button
    */

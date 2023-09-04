@@ -1,73 +1,89 @@
 <template>
-  <article>
-    <my-header :user="user" @login="onLogin" @logout="onLogout" @create-account="onCreateAccount" />
+  <section class="header">
+    <h1 class="title">netfix<span class="thin">roulette</span></h1>
+    <div class="section">
+      <SearchBarComponent title="FIND YOUR MOVIE"/>
+      <MyButton class="button" size="custom" @click="$emit('search')" label="SEARCH" primary />
+    </div>
+    <div class="section">
+      <SearchByComponent :types="types" />
+    </div>
+  </section>
+  <section class="sort">
 
-    <section class="storybook-page">
-      <h2>Pages in Storybook</h2>
-      <p>
-        We recommend building UIs with a
-        <a href="https://componentdriven.org" target="_blank" rel="noopener noreferrer">
-          <strong>component-driven</strong>
-        </a>
-        process starting with atomic components and ending with pages.
-      </p>
-      <p>
-        Render pages with mock data. This makes it easy to build and review page states without
-        needing to navigate to them in your app. Here are some handy patterns for managing page data
-        in Storybook:
-      </p>
-      <ul>
-        <li>
-          Use a higher-level connected component. Storybook helps you compose such data from the
-          "args" of child component stories
-        </li>
-        <li>
-          Assemble data in the page component from your services. You can mock these services out
-          using Storybook.
-        </li>
-      </ul>
-      <p>
-        Get a guided tutorial on component-driven development at
-        <a href="https://storybook.js.org/tutorials/" target="_blank" rel="noopener noreferrer"
-          >Storybook tutorials</a
-        >
-        . Read more in the
-        <a href="https://storybook.js.org/docs" target="_blank" rel="noopener noreferrer">docs</a>
-        .
-      </p>
-      <div class="tip-wrapper">
-        <span class="tip">Tip</span>
-        Adjust the width of the canvas with the
-        <svg width="10" height="10" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" fill-rule="evenodd">
-            <path
-              d="M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z"
-              id="a"
-              fill="#999"
-            />
-          </g>
-        </svg>
-        Viewports addon in the toolbar
-      </div>
-    </section>
-  </article>
+  </section>
+  <section class="results"></section>
 </template>
+
+<style lang="scss" scoped>
+.header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  font-family: sans-serif;
+  height: 396px;
+  z-index: 1;
+  color: #f65261;
+
+  &:before {
+    z-index: -1;
+    content: '';
+    background: url("https://i.insider.com/5e721a4ac485404f1161d6a6?width=700&format=jpeg&auto=webp");
+    background-size: cover;
+    filter: blur(3px);
+    position: absolute;
+    overflow: hidden;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+  }
+
+  &:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    overflow: hidden;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .title {
+    width: 100%;
+    margin-left: 60px;
+    padding-top: 25px;
+    font-weight: 700;
+    .thin {
+      font-weight: lighter;
+    }
+  }
+
+  .section {
+    display: flex;
+    align-items: flex-end;
+    width: 80%;
+    margin-left: 100px;
+
+    .button {
+      margin-left: 15px;
+    }
+  }
+}
+</style>
 
 <script lang="ts" setup>
 import "./page.css";
-import MyHeader from "./AppHeader.vue";
+import MyButton from "./MyButton.vue";
 
-import { ref } from "vue";
+import {ref} from "vue";
+import SearchBarComponent from "@/components/SearchBarComponent/SearchBarComponent.vue";
+import SearchByComponent from "@/components/SearchByComponent/SearchByComponent.vue";
+
 
 const user = ref<{ name: string } | null>(null);
-
-const onLogin = () => {
-  user.value = { name: "Jane Doe" };
-};
-const onLogout = () => {
-  user.value = null;
-};
-const onCreateAccount = () => {
-  user.value = { name: "Jane Doe" };
-};
+const types = [{ id: 1, name: 'TITLE' }, { id: 2, name: 'GENGRE' }];
 </script>

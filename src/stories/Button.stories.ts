@@ -9,7 +9,7 @@ const meta = {
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {
-    size: { control: 'select', options: ['small', 'medium', 'large'] },
+    size: { control: 'select', options: ['small', 'medium', 'large', 'custom'] },
     backgroundColor: { control: 'color' },
     onClick: { action: 'clicked' },
   },
