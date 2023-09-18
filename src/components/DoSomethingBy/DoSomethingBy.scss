@@ -1,0 +1,23 @@
+.do-something-by {
+  display: flex;
+  align-items: center;
+
+  .title {
+    padding-right: 22px;
+  }
+
+  .button {
+    height: 35px;
+    padding: 0 22px;
+
+    &:first-of-type {
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+}
