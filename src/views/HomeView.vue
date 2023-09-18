@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import TheWelcome from "../components/TheWelcome.vue";
+import AppPage from "@/stories/AppPage.vue"
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <AppPage />
 </template>
