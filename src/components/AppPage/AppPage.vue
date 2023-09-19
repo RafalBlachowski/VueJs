@@ -80,7 +80,6 @@
 </style>
 
 <script lang="ts" setup>
-import "./MyPage.css";
 
 import {ref} from "vue";
 import SearchBar from "@/components/SearchBar/SearchBar.vue";
