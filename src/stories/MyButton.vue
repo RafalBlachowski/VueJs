@@ -1,10 +1,10 @@
 <template>
-  <button type="button" :class="classes" @click="onClick" :style="style">{{ label }} </button>
+  <button type="button" :class="classes" @click="onClick" :style="style">{{ label }}</button>
 </template>
 
 <script lang="ts" setup>
-import "./button.css";
-import { computed } from "vue";
+import "./MyButton.css";
+import {computed} from "vue";
 
 const props = withDefaults(defineProps<{
   /**
@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<{
    */
   backgroundColor?: string,
 
-}>(), { primary: false });
+}>(), {primary: false});
 
 const emit = defineEmits<{
   (e: "click", id: number): void;

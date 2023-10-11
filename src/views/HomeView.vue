@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppPage from "@/stories/AppPage.vue"
+import AppPage from "@/components/AppPage/AppPage.vue"
 </script>
 
 <template>
