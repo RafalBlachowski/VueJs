@@ -1,17 +1,16 @@
 <template>
-  <div class="product-list">
-    <template v-for="tile of filteredItems" :key="tile.id">
+  <div class="movie-list">
+    <template v-for="(tile, index) of filteredItems" :key="index">
       <TileComponent :tile="tile"/>
     </template>
   </div>
 </template>
 
-<style lang="scss" scoped src="./ProductList.scss"/>
+<style lang="scss" scoped src="./MovieList.scss"/>
 
 <script lang="ts" setup>
 import {inject, computed} from 'vue';
 import TileComponent from "@/components/TileComponent/TileComponent.vue";
-
 
 const filteredItems = inject('filteredItems') as ReturnType<typeof computed>;
 

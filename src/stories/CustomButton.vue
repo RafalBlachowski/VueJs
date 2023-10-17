@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import "./MyButton.css";
+import "./CustomButton.css";
 import {computed} from "vue";
 
 const props = withDefaults(defineProps<{

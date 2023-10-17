@@ -2,7 +2,7 @@
   <div class="do-something-by">
     <h3 class="title">{{ title }}</h3>
     <template v-for="type of types" :key="type.id">
-      <MyButton
+      <CustomButton
           class='button'
           :class="[{'selected': selectedType === type.id},classes(type.id)]"
           :size="selectedType === type.id ? 'medium' : 'small'"
@@ -16,27 +16,42 @@
 
 <style lang="scss" scoped src="./DoSomethingBy.scss"/>
 
-<script lang="ts" setup>
-import {ref} from 'vue';
-import MyButton from "@/stories/MyButton.vue";
+<script lang="ts">
+import { ref } from 'vue';
+import CustomButton from "../../stories/CustomButton.vue";
 
-defineProps<{
-  types: [{ id: number, name: string }],
-  title: string
-}>();
-let selectedType = ref(1);
-
-const emit = defineEmits<{
-  (e: "click", name: string);
-}>();
-
-const actionByType = (type) => {
-  selectedType.value = type.id;
-  emit('click', type.name);
+declare interface Type {
+  id: number;
+  name: string;
 }
 
-const classes = (typeId) => {
-  return 'button-' + typeId;
+export default {
+  components: {
+    CustomButton
+  },
+
+  props: {
+    types: Array as Type[],
+    title: String
+  },
+  setup(props, { emit }) {
+    let selectedType = ref(1);
+
+    const actionByType = (type) => {
+      selectedType.value = type.id;
+      emit('click', type.name);
+    }
+
+    const classes = (typeId) => {
+      return 'button-' + typeId;
+    }
+
+    return {
+      selectedType,
+      actionByType,
+      classes
+    }
+  }
 }
 
 </script>
