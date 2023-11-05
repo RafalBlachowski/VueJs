@@ -1,7 +1,7 @@
 import Sort from '../components/Sort/Sort.vue';
 
 export default {
-  title: 'Example/SortComponent',
+  title: 'Example/Sort',
   component: Sort,
   argTypes: {
     items: Array,

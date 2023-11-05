@@ -1,5 +1,5 @@
 <template>
-  <div class="tile">
+  <div v-if="isPictureLoad" class="tile">
     <div class="tile__picture">
       <picture>
         <img
@@ -7,6 +7,7 @@
             :alt="tile.poster"
             width="322"
             height="455"
+            @click="checkLoadedImage"
         >
       </picture>
     </div>
@@ -23,10 +24,25 @@
 
 <script lang="ts">
 
+import { ref } from 'vue';
+
 
 export default {
   props: {
     tile: Object
+  },
+  setup() {
+    const isPictureLoad = ref(true);
+
+    return {
+      isPictureLoad
+    }
+  },
+
+  methods: {
+    checkLoadedImage(event) {
+      this.isPictureLoad = event.detail
+    }
   }
 }
 

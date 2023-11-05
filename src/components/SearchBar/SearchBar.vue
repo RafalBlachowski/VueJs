@@ -10,17 +10,32 @@
     />
   </div>
 
-  <MyButton class="button" size="custom" label="SEARCH" primary/>
+  <MyButton class="button" size="custom" label="SEARCH" primary @click="updateSearch(searchTerm)"/>
 </template>
 <script lang="ts" setup>
-import MyButton from "@/stories/MyButton.vue";
+import MyButton from "@/stories/CustomButton.vue";
 import { inject, ref } from 'vue';
+import { useSearchStore } from '@/store/search/search';
+
+const searchStore = useSearchStore();
+import { onMounted } from 'vue';
+
+onMounted(async () => {
+  if (!searchStore.items.length) {
+     await searchStore.setItems();
+  }
+});
+
 defineProps<{
   title: string,
   searchType: string
 }>();
 
 const searchTerm = inject('searchTerm') as ReturnType<typeof ref>;
+
+const updateSearch = (term) => {
+  searchStore.setSearchTerm(term);
+}
 
 </script>
 <style src="./SearchBar.scss" scoped/>

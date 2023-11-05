@@ -1,26 +1,33 @@
 import { ref, computed, provide } from 'vue';
 
-export default function useSearch(items) {
+function filterByTitle(items, searchTerm) {
+    const searchValue = searchTerm.toLowerCase();
+    return items.filter(tile => tile.title.toLowerCase().includes(searchValue));
+}
+
+function filterByGenre(items, searchTerm) {
+    const searchValue = searchTerm.toLowerCase();
+    return items.filter(tile => tile.genres.some(genre => genre.toLowerCase().includes(searchValue)));
+}
+
+export default function useSearch(initialItems) {
+    const items = ref(initialItems)
     const searchTerm = ref('');
     const searchType = ref('TITLE');
+
     const filteredItems = computed(() => {
-        if (!searchTerm.value) return items;
-        if (searchType.value === 'TITLE') {
-            return items.filter((tile) => {
-                const title = tile.title.toLowerCase();
-                const searchTermValue =  searchTerm.value.toLowerCase();
-                return title.includes(searchTermValue);
-            });
-        }
-        if (searchType.value === 'GENRE') {
-            return items.filter((tile) => {
-                const searchTermValue =  searchTerm.value.toLowerCase();
-                return tile.genres.find(genre => {
-                  return genre.toLowerCase().includes(searchTermValue);
-                });
-            });
+        if (!searchTerm.value) return items.value;
+
+        switch (searchType.value) {
+            case 'TITLE':
+                return filterByTitle(items.value, searchTerm.value);
+            case 'GENRE':
+                return filterByGenre(items.value, searchTerm.value);
+            default:
+                return items.value;
         }
     });
+
 
 
     const updateSearchType = (newType) => {

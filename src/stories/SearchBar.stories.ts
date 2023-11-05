@@ -1,7 +1,7 @@
 import SearchBar from '../components/SearchBar/SearchBar.vue';
 
 export default {
-    title: 'Example/SearchBarComponent',
+    title: 'Example/SearchBar',
     component: SearchBar,
 };
 

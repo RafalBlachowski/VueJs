@@ -1,9 +1,17 @@
-
 const loadImage = (el: any) => {
     const image = new Image();
     image.src = el.dataset.src!;
     image.onload = () => {
+        const event = new MouseEvent('click', {
+            detail: 1
+        });
+
         el.src = image.src;
+        el.dispatchEvent(event);
+    };
+
+    image.onerror = () => {
+        el.click();
     }
 };
 
